@@ -1,0 +1,32 @@
+<div class="wrapper-form">
+    <form  [formGroup]="registerForm" (ngSubmit)="submit()">
+        <input type="text" name="name" placeholder="Name" formControlName="name">
+        <input type="text" name="username" placeholder="Username" formControlName="username">
+        <input type="email" name="email" placeholder="Email" formControlName="email">
+        <input type="phone" name="phone" placeholder="Phone" formControlName="phone">
+        <input type="password" name="password" placeholder="Password" formControlName="password">
+        <button type="submit">Зарегестрироваться</button>
+    </form>
+</div>
+
+
+<div class="wrapper-error" *ngIf="!error">
+    <div *ngIf="registerForm.controls['username'].invalid">
+        Ник-нейм должен быть от 4 до 29 символов
+    </div>
+    <div *ngIf="registerForm.controls['name'].invalid">
+        Имя должно содержать до 29 символов
+    </div>
+    <div *ngIf="registerForm.controls['phone'].invalid">
+        Не указан телефон
+    </div>
+    <div *ngIf="registerForm.controls['email'].invalid">
+        Не указано адресс электронной почты
+    </div>
+    <div *ngIf="registerForm.controls['password'].invalid">
+        Пароль должен содержать от 7 до 29 символов
+    </div>
+</div>
+<div class="wrapper-error" *ngIf="error">
+    {{error}}
+</div>

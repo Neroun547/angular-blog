@@ -1,0 +1,10 @@
+<div class="wrapper" *ngIf="articleList">
+    <div class="wrapper-article" *ngFor="let item of articleList.message">
+       <div class="article-title">Title:{{item.title}}</div>
+        <div class="article-theme">Theme:{{item.theme}}</div> 
+        <div class="article-avtor">Avtor:{{item.avtor}}</div>
+        <div class="article-date">Date:{{item.date | date:'medium'}}
+            <a class="article-link" [routerLink]="['item', item._id]">Читать</a>
+        </div>
+    </div>
+</div>

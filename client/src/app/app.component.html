@@ -1,0 +1,19 @@
+<header class="header">
+  <button *ngIf="activeUser" (click)="exitAccount()" class="btn">Exit account</button>
+  <div class="wrapper-nav">
+    <nav>
+      <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" >Главная</a>
+      <a routerLink="article" routerLinkActive="active">Статьи</a>
+      <a *ngIf="activeUser" routerLink="add-article" routerLinkActive="active">Добавить статью</a>
+      <a *ngIf="!activeUser" routerLink="register" routerLinkActive="active">Регистрация</a>
+      <a *ngIf="!activeUser" routerLink="login" routerLinkActive="active">Авторизация</a>
+    </nav>
+  </div>
+</header>
+
+<div class="allcontent-page">
+  <router-outlet></router-outlet>
+</div>
+<footer>
+  <div>Www.blog.ua</div>
+</footer>

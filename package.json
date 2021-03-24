@@ -1,0 +1,20 @@
+{
+  "name": "server-blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "node server.js",
+    "client":"npm run start --prefix client",
+    "start":"concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "Gosha",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "concurrently": "^6.0.0",
+    "express": "^4.17.1",
+    "mongodb": "^3.6.5"
+  }
+}

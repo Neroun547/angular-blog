@@ -1,0 +1,30 @@
+<div class="wrapper-form" *ngIf="!error">
+    <form [formGroup]="addArticleForm" (ngSubmit)="submit()">
+        <input type="text" placeholder="Заголовок статьи" name="title" formControlName="title"/>
+        <input type="text" placeholder="Тема статьи" name="theme" formControlName="theme"/>
+        <input type="text" placeholder="Контент" name="content" formControlName="content">
+        <input type="text" placeholder="Автор" name="avtor" formControlName="avtor">
+        <button type="submit">Добавить статью</button>
+    </form>
+</div>
+<div class="server-error" *ngIf="error">
+    {{error}}
+</div>
+<div class="response" *ngIf="response">
+    {{response.message}}
+</div>
+
+<div class="wrapper-error" *ngIf="!error">
+    <div *ngIf="addArticleForm.controls['avtor'].invalid">
+       Имя автора обязательно до 29 символов
+    </div>
+    <div *ngIf="addArticleForm.controls['theme'].invalid">
+        Тема должна быть обязательно до 30 символов
+    </div>
+    <div *ngIf="addArticleForm.controls['title'].invalid">
+        Заголовок должен быть обязательно до 30 символов
+    </div>
+    <div *ngIf="addArticleForm.controls['content'].invalid">
+        Контент должен быть обязательно от 10 символов
+    </div>
+</div>

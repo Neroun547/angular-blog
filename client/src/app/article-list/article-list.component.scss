@@ -1,0 +1,38 @@
+.wrapper{
+    margin: 0 auto;
+    max-width: 1000px;
+
+    .wrapper-article{
+        background-color: #ccc;
+        border-radius:5px;
+        padding: 10px;
+        margin: 10px;
+        .article-title{
+           font-size: 28px;
+           font-weight: 700;
+           margin: 10px; 
+        }
+        .article-theme{
+            font-size: 20px;
+            font-weight: 700;
+            margin: 10px; 
+        }
+        .article-avtor{
+            font-size: 20px;
+            font-weight: 700;
+            margin: 10px; 
+        }
+
+        .article-date{
+            font-weight: 700;
+            margin-left: 10px;
+            margin-top: 30px;
+        }
+
+        .article-link{
+            margin-left: auto;
+            float: right;
+            clear: both;
+        }
+    }
+}

@@ -1,0 +1,10 @@
+<div class="wrapper-form">
+    <form [formGroup]="loginForm" (ngSubmit)="submit()">
+        <input type="email" name="email" placeholder="Email" formControlName="email">
+        <input type="password" name="password" placeholder="Password" formControlName="password">
+        <button type="submit">Войти</button>
+    </form>
+</div>
+<div *ngIf="error" class="wrapper-error">
+    {{error}}
+</div>
