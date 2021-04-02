@@ -4,3 +4,7 @@
         {{content.content}}
     </div>
 </div>
+
+<div *ngIf="!content">
+    <app-loader></app-loader>
+</div>

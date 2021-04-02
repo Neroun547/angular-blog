@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 //Component
 import { AppComponent } from './app.component';
 import { NotfoundComponent } from './notfound/notfound.component';
@@ -14,13 +14,19 @@ import { RegisterComponent } from './register/register.component';
 import { ArticleListComponent } from './article-list/article-list.component';
 import { AddArticleComponent } from './add-article/add-article.component';
 import { ArticleComponent } from './article/article.component';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { ChangeCheckComponent } from './change-check/change-check.component';
+import { ChangeItemComponent } from './change-item/change-item.component'; 
 //Service
 import { LoginService } from './service/login.service';
 import { RegisterService } from './service/register.service';
 import { CheckTokenService } from './service/check-token.service';
-import { AddArticleService } from './service/add-article.service';
-import { ArticleContentService } from './service/article-content.service';
-import { GetArticleList } from './service/get-articlelist.service';
+import { ArticleService } from './service/articel.service';
+import { AccountSettingsService } from './service/account-settings.service'; 
+import { AppService } from './service/app.service'; 
+//Sait effect
+import { LoaderComponent } from './loader/loader.component';
+
 
 @NgModule({
   declarations: [
@@ -31,17 +37,23 @@ import { GetArticleList } from './service/get-articlelist.service';
     RegisterComponent,
     ArticleListComponent,
     AddArticleComponent,
-    ArticleComponent
+    ArticleComponent,
+    AccountSettingsComponent,
+    ChangeCheckComponent,
+    ChangeItemComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+
   ],
   providers: [LoginService, RegisterService, CheckTokenService, 
-    AddArticleService, ArticleContentService, GetArticleList],
+    ArticleService,
+     AccountSettingsService, AppService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

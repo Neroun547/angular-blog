@@ -1,0 +1,11 @@
+<div class="wrapper-form" *ngIf="!error">
+    <form [formGroup]="changeUserNameForm" (ngSubmit)="submitForm()">
+        <input type="text" formControlName="newparam" placeholder="Новое значение">
+        <button>Подтвердить</button>
+    </form>
+</div>
+
+<div *ngIf="error" class="wrapper-error">
+    {{error}}
+</div>
+<p *ngIf="message" class="message">{{message}}</p>

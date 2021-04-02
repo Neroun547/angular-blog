@@ -1,0 +1,3 @@
+{
+    "mongoDbUri":"mongodb+srv://Admin:js234dh3@cluster0.pfc7g.mongodb.net/blog_angular?retryWrites=true&w=majority"
+}

@@ -9,5 +9,7 @@ export class MainComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // this.http.get('http://localhost:9000/getAvatar').subscribe(data => console.log(data));
+  }
 }

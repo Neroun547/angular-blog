@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { LoginService } from '../service/login.service';
 
 @Component({
@@ -9,7 +8,7 @@ import { LoginService } from '../service/login.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent  {
-  constructor(private service: LoginService, private router: Router) {}
+  constructor(private service: LoginService) {}
   token;
   error ;
   loginForm = new FormGroup({
@@ -25,9 +24,10 @@ export class LoginComponent  {
         password:this.loginForm.value.password 
       }).subscribe(data => {
         this.token = data
+        console.log(data);
         localStorage.setItem('token', JSON.stringify({token:this.token.token}));
         this.loginForm.reset('');
-        this.router.navigate(['/']);
+        window.location.replace('/');
       }, 
         err => {
           this.error = err.error.message;

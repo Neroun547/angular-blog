@@ -1,0 +1,12 @@
+<div class="title">Сначало нужно ввести пароль</div>
+
+<div class="wrapper-form">
+    <form [formGroup]="changeForm" (ngSubmit)="submitForm()">
+        <input type="password" formControlName="password" placeholder="Пароль">
+        <button>Подтвердить</button>
+    </form>
+</div>
+
+<div *ngIf="error" class="wrapper-error">
+    {{error}}
+</div>

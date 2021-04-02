@@ -8,3 +8,10 @@
         </div>
     </div>
 </div>
+
+<div *ngIf="!articleList && !error">
+    <app-loader></app-loader>
+</div>
+<div class="not-articles" *ngIf="error">
+    <div>Сатей не обнаружено :(</div>
+</div>

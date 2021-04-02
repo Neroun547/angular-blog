@@ -16,10 +16,10 @@ export class RegisterComponent {
     "username": new FormControl('', [Validators.required, this.userNameValidator]), 
     "email": new FormControl('', [Validators.required, Validators.email]),
     "phone": new FormControl('', [Validators.required, this.phoneValidator]),
-    "password": new FormControl('', [Validators.required, ])
+    "password": new FormControl('', [Validators.required ])
   })
   nameValidator(control: FormControl){
-    if(control.value?.length < 30){
+    if(control.value?.length < 30 && control.value?.length > 0){
       return null;
     } else {
       return { "name":true }
@@ -29,14 +29,14 @@ export class RegisterComponent {
     if(control.value?.length < 30 && control.value?.length > 3){
       return null;
     } else {
-      return { "name":true }
+      return { "username":true }
     }
   }
   phoneValidator(control: FormControl){
     if(Number(control.value)){
       return null;
     } else {
-      return { "name":true }
+      return { "phone":true }
     }
   }
   passwordValidator(control: FormControl){

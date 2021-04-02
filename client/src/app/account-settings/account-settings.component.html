@@ -1,0 +1,33 @@
+<div class="wrapper">
+    <div *ngIf="user" class="sub-wrapper">
+      <div style="text-align: center">
+        <form>      
+          <div>
+            <input type="file" name="filedata" (change)="selectImage($event)" />
+          </div>
+          <br>
+          <div>
+            <button type="submit" (click)="onSubmit()">Загрузить аватар</button>
+          </div>
+        </form>
+      </div>
+        <div class="change">
+            Ваше имя: {{user.name}}
+            <a [routerLink]='["checkpassword", "name"]'><button>Изменить</button></a>
+        </div>
+        <div class="change">
+            Ваш ник-нейм: {{user.username}}
+            <a [routerLink]='["checkpassword", "username"]'><button>Изменить</button></a>
+        </div>
+        <div class="change">
+            Ваш номер телефона: {{user.phone}}
+            <a [routerLink]='["checkpassword", "phone"]'><button>Изменить</button></a>
+        </div>
+    </div>
+</div>
+<div *ngIf="!user && !error">
+    <app-loader></app-loader>
+</div>
+<div *ngIf="error" >
+    {{error}}
+</div>

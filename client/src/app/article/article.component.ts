@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ArticleContentService } from '../service/article-content.service';
+import { ArticleService } from '../service/articel.service';
 @Component({
   selector: 'app-article',
   templateUrl: './article.component.html',
@@ -9,11 +9,11 @@ import { ArticleContentService } from '../service/article-content.service';
 export class ArticleComponent implements OnInit {
   id;
   content;
-  constructor(private route: ActivatedRoute, private service: ArticleContentService){
+  constructor(private route: ActivatedRoute, private articleService: ArticleService){
   }
   ngOnInit():void{
     this.id = this.route.snapshot.params['id'];
-    this.service.getContent({id:this.id}).subscribe(data => {
+    this.articleService.getContent({id:this.id}).subscribe(data => {
       this.content = data;
     })
   }

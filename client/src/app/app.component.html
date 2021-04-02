@@ -1,5 +1,9 @@
 <header class="header">
   <button *ngIf="activeUser" (click)="exitAccount()" class="btn">Exit account</button>
+  <a routerLink="account-settings" routerLinkActive="active" *ngIf="activeUser">
+    <img *ngIf="srcAvatar" [src]="srcAvatar" class="img-avatar">
+    <div *ngIf="!srcAvatar" class="img-noavatar"></div>
+  </a>
   <div class="wrapper-nav">
     <nav>
       <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" >Главная</a>
@@ -7,6 +11,7 @@
       <a *ngIf="activeUser" routerLink="add-article" routerLinkActive="active">Добавить статью</a>
       <a *ngIf="!activeUser" routerLink="register" routerLinkActive="active">Регистрация</a>
       <a *ngIf="!activeUser" routerLink="login" routerLinkActive="active">Авторизация</a>
+      <a *ngIf="activeUser" routerLink="account-settings" routerLinkActive="active">Настройки аккаунта</a>
     </nav>
   </div>
 </header>
