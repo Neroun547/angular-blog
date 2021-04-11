@@ -1,5 +1,11 @@
 <div class="wrapper" *ngIf="articleList">
-    <div class="wrapper-article" *ngFor="let item of articleList.message">
+    <form class="form-search" #formSearch="ngForm" (ngSubmit)="submitSearch(formSearch)">
+        <input type="text" placeholder="Поиск по теме статьи"
+            name="titleSearchTheme" required
+         [(ngModel)]="formSearchTheme.titleSearchTheme" #titleTheme="ngModel">
+        <button type="submit" [disabled]="formSearch.invalid">Поиск</button>
+    </form>
+    <div class="wrapper-article" *ngFor="let item of articleList">
        <div class="article-title">Title:{{item.title}}</div>
         <div class="article-theme">Theme:{{item.theme}}</div> 
         <div class="article-avtor">Avtor:{{item.avtor}}</div>

@@ -4,6 +4,7 @@ const app = express();
 const addArticle = require('../actions/article-worker/add-article');
 const getArticleList = require('../actions/article-worker/get-article-list');
 const getContent = require('../actions/article-worker/get-content');
+const searchArticles = require('../actions/article-worker/searchArticles');
 //Check password
 const checkPassword = require('../actions/check-password/check-password');
 //Check token
@@ -24,6 +25,7 @@ const getAvatar = require('../actions/get-avatar/get-avatar');
 app.use(addArticle)
 app.use(getArticleList);
 app.use(getContent);
+app.use(searchArticles);
 // /*---------------------------*/
 app.use(checkPassword);
 // /*---------------------------*/

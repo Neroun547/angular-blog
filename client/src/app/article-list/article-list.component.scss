@@ -3,7 +3,7 @@
     max-width: 1000px;
 
     .wrapper-article{
-        background-color: #ccc;
+        background-color: #fafafa;
         border-radius:5px;
         padding: 10px;
         margin: 10px;
@@ -41,4 +41,29 @@
     margin-top: 300px;
     text-align: center;
     font-size: 22px;
+}
+
+.form-search {
+    display: flex;
+    justify-content: space-between;
+    max-width: 470px;
+    margin: 20px auto;
+}
+
+.form-search input {
+    width: 350px;
+    font-size: 20px;
+    border: none;
+    border-bottom: 2px solid #000;
+    outline: none;
+}
+
+.form-search button {
+    background-color: #3282fa;
+    border: none;
+    width: 80px;
+    height: 30px;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
 }

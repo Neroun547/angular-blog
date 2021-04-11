@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const connection = require('../../db-connect/connect');
-
+const user = require('../../user');
 app.get('/getArticleList', (req, res) => {
     connection(function(err, client) {
         if(err){
@@ -10,7 +10,7 @@ app.get('/getArticleList', (req, res) => {
             const db = client.db('blog_angular');
             const collectionArticles = db.collection('articles');
         new Promise((resolve, reject) => {
-            collectionArticles.find({}).toArray((err, result) => {
+            collectionArticles.find({}).skip(user.skipArticle).limit(5).toArray((err, result) => {
                 if(err){
                     reject();
                     return;

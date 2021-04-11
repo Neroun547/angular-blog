@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const collectionArticles = require('../../db-connect/connect').collectionArticles;
 const connection = require('../../db-connect/connect');
 
 app.post('/addArticle', (req, res) => {
@@ -27,7 +26,7 @@ app.post('/addArticle', (req, res) => {
                 collectionArticles.insertOne({
                     avtor:req.body.avtor.trim(),
                     title: req.body.title.trim(),
-                    theme: req.body.theme.trim(),
+                    theme: req.body.theme.trim().toLowerCase().split(' '),
                     content: req.body.content.trim(),
                     date:new Date()
                 }, (err) => {
