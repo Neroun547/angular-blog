@@ -20,7 +20,7 @@ export class ChangeCheckComponent implements OnInit {
   });
 
   ngOnInit(){
-    this.activatedRoute.params.subscribe(params => {this.change = params['change'], console.log(params) });
+    this.activatedRoute.params.subscribe(params => {this.change = params['change'] });
   }
 
   submitForm(){

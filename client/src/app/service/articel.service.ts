@@ -13,8 +13,8 @@ import { map } from 'rxjs/operators'
         return this.http.post('http://localhost:9000/getContent', data);
     }
 
-    getArticelList(){
-        return this.http.get('http://localhost:9000/getArticleList').pipe(map(data => {
+    getArticelList(page){
+        return this.http.get(`http://localhost:9000/getArticleList/${page}`).pipe(map(data => {
             const newList = data['message'].map(el => {
                 return {
                     _id:el._id,
@@ -25,7 +25,11 @@ import { map } from 'rxjs/operators'
                     date:el.date
                 }
             })
-            return newList;
+
+            return {
+                listArticle: newList,
+                countArticle: data['countArticle']
+            };
         }));
     }
 

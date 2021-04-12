@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from '../service/articel.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-article-list',
   templateUrl: './article-list.component.html',
@@ -8,25 +9,49 @@ import { ArticleService } from '../service/articel.service';
 export class ArticleListComponent implements OnInit {
   articleList;
   error;
+  articleUrl;
+  loadingNextArticles:boolean = false;
   formSearchTheme = {
     titleSearchTheme: ''
   }
+  countArticle:number;
 
-  constructor(private articleService: ArticleService) { }
+  constructor(private articleService: ArticleService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.articleService.getArticelList().subscribe(data => {this.articleList = data, console.log(this.articleList);}, err => {
-      this.error = err;
+  this.activatedRoute.params.subscribe(params => {
+    this.articleUrl = Number(params['number']);
+    this.articleService.getArticelList(params['number'])
+      .subscribe(data => {
+        console.log(data);
+        this.error = null;
+        this.articleList = data.listArticle;
+        this.countArticle = Number(data.countArticle) / this.articleUrl;
+        this.loadingNextArticles = false;
+      }, err => {
+        this.error = err.error.message;
+        this.loadingNextArticles = false;
+      })
+    }, err => {
+      this.error = "Ошибка";
+      this.loadingNextArticles = false;
     });
   }
 
   submitSearch(form){
+    this.loadingNextArticles = true;
     this.articleService.searchArticlesTheme(form.value.titleSearchTheme.trim()).subscribe(data => {
       this.articleList = data;
       this.formSearchTheme.titleSearchTheme = '';
+      this.loadingNextArticles = false;
     }, err => {
       this.error = err.error.message;
+      this.loadingNextArticles = false;
     });
+  }
+
+  loader(){
+    this.loadingNextArticles = true;
   }
 
 }

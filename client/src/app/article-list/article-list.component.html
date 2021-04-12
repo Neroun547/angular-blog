@@ -1,4 +1,4 @@
-<div class="wrapper" *ngIf="articleList">
+<div class="wrapper" *ngIf="articleList && !error && !loadingNextArticles">
     <form class="form-search" #formSearch="ngForm" (ngSubmit)="submitSearch(formSearch)">
         <input type="text" placeholder="Поиск по теме статьи"
             name="titleSearchTheme" required
@@ -14,8 +14,11 @@
         </div>
     </div>
 </div>
-
-<div *ngIf="!articleList && !error">
+<div class="links-list" *ngIf="!error && !loadingNextArticles && articleList">
+    <a *ngIf="articleUrl > 1" (click)="loader()" [routerLink]="['/article', '1']">Предыдущая страница</a>
+    <a *ngIf="countArticle > 5" (click)="loader()" [routerLink]='["/article", "2"]'>Следующая страница</a>
+</div>
+<div *ngIf="!articleList && !error || loadingNextArticles">
     <app-loader></app-loader>
 </div>
 <div class="not-articles" *ngIf="error">

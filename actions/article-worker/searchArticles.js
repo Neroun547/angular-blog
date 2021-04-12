@@ -10,7 +10,7 @@ app.post('/searchArticles', (req, res) => {
             const db = client.db("blog_angular")
             const collectionArticles = db.collection('articles');
             const findTheme = req.body.theme.trim().toLowerCase().split(' ');
-            collectionArticles.find({theme: { $in: findTheme }}).toArray((err, docs) => {
+            collectionArticles.find({theme: { $in: findTheme }}).limit(5).toArray((err, docs) => {
                 if(err){
                     res.status(500).send({message:"Ничего не найдено :("})
                 } else {

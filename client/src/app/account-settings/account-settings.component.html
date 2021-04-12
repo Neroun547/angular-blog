@@ -7,7 +7,7 @@
           </div>
           <br>
           <div>
-            <button type="submit" (click)="onSubmit()">Загрузить аватар</button>
+            <button type="submit" [disabled]="loading" (click)="onSubmit()">Загрузить аватар</button>
           </div>
         </form>
       </div>
@@ -25,7 +25,7 @@
         </div>
     </div>
 </div>
-<div *ngIf="!user && !error">
+<div *ngIf="!user && !error || loading">
     <app-loader></app-loader>
 </div>
 <div *ngIf="error" >

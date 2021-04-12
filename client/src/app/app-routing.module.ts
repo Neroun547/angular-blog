@@ -16,12 +16,12 @@ const routes: Routes = [
   {path: "", component:MainComponent},
   {path: "login", component: LoginComponent},
   {path:"register", component: RegisterComponent},
-  {path:'article', component: ArticleListComponent},
   {path:"add-article", component:AddArticleComponent},
   {path: 'article/item/:id', component:ArticleComponent},
   {path:'account-settings', component: AccountSettingsComponent},
   {path:'account-settings/checkpassword/:change', component:ChangeCheckComponent},
   {path:"account-settings/change/:change", component: ChangeItemComponent},
+  {path:"article/:number", component:ArticleListComponent},
   {path: "**", component: NotfoundComponent}
 ];
 

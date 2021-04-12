@@ -10,6 +10,7 @@ export class AccountSettingsComponent implements OnInit {
   user;
   error;
   images;
+  loading:boolean = false;
   constructor(private accountSettingsService: AccountSettingsService, private checkToken: CheckTokenService) { }
 
   ngOnInit(): void {
@@ -26,8 +27,11 @@ export class AccountSettingsComponent implements OnInit {
   }
 
   onSubmit(){
+    this.loading = true;
     const formData = new FormData();
     formData.append('filedata', this.images);
-    this.accountSettingsService.changeAvatar(formData).subscribe(res => { location.reload() }, err => this.error = err.error.message)
+    this.accountSettingsService.changeAvatar(formData)
+    .subscribe(res => { location.reload(), this.loading = false },
+    err => { this.error = err.error.message, this.loading = false })
   }
 } 
