@@ -7,31 +7,33 @@ import { CheckTokenService } from '../service/check-token.service';
   styleUrls: ['./account-settings.component.scss']
 })
 export class AccountSettingsComponent implements OnInit {
-  user;
-  error;
+  user: object;
+  error: string;
   images;
-  loading:boolean = false;
+  loading = false;
   constructor(private accountSettingsService: AccountSettingsService, private checkToken: CheckTokenService) { }
 
   ngOnInit(): void {
       this.checkToken.checkToken(JSON.parse(localStorage.getItem('token')))
-        .subscribe(() => { 
-          this.accountSettingsService.getUserInfo('http://localhost:9000/getUserInfo')
-        .subscribe(data => this.user = data, err => this.error = err.message)});
+        .subscribe((): void => { 
+          this.accountSettingsService
+          .getUserInfo('http://localhost:9000/getUserInfo')
+          .subscribe(data => this.user = data, err => this.error = err.message);
+        });
   }
-  selectImage(event) {
+  selectImage(event): void {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.images = file;
     }
   }
 
-  onSubmit(){
+  onSubmit(): void {
     this.loading = true;
     const formData = new FormData();
     formData.append('filedata', this.images);
     this.accountSettingsService.changeAvatar(formData)
-    .subscribe(res => { location.reload(), this.loading = false },
-    err => { this.error = err.error.message, this.loading = false })
+    .subscribe(res => (location.reload(), this.loading = false),
+    err => (this.error = err.error.message, this.loading = false));
   }
 } 

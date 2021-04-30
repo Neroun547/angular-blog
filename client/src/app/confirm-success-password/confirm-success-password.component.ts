@@ -8,16 +8,20 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./confirm-success-password.component.scss']
 })
 export class ConfirmSuccessPasswordComponent implements OnInit {
-  message:string;
-  error:string;
-  loading:boolean;
-  constructor(private service:AccountSettingsService, private activatedRoute:ActivatedRoute) { }
+  message: string;
+  error: string;
+  loading: boolean;
+  constructor(
+    private service: AccountSettingsService,
+    private activatedRoute: ActivatedRoute
+  ) { }
   ngOnInit(): void {
     this.loading = true;
     this.activatedRoute.params.subscribe(params => {
-      this.service.confirmSuccess("http://localhost:9000/confirm-password", { hash:params['hash'] })
-      .subscribe(data => {this.message = data['message'], this.loading = false},
-       err => { this.error = err.error.message, this.loading = false });
+      this.service.confirmSuccess('http://localhost:9000/confirm-password', { hash: params.hash })
+      .subscribe(data => (this.message = data['message'], this.loading = false),
+       err => ( this.error = err.error.message, this.loading = false )
+      );
     });
   }
 }

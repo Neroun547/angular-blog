@@ -10,21 +10,22 @@ export class AppComponent implements DoCheck, OnInit {
   activeUser = false;
   srcAvatar;
   constructor(private service: AppService){}
-  ngDoCheck(){
-    if(localStorage.getItem('token')){
+  ngDoCheck(): void {
+    if (localStorage.getItem('token')) {
       this.activeUser = true;
     } else {
       this.activeUser = false;
     }
   }
 
-  ngOnInit(){ 
-    if(localStorage.getItem('token')){
-      this.service.getImage('http://localhost:9000/getAvatar').subscribe(x => this.srcAvatar = x)
+  ngOnInit(): void { 
+    if (localStorage.getItem('token')) {
+      this.service.getImage('http://localhost:9000/getAvatar')
+      .subscribe(x => this.srcAvatar = x);
     }
   }
 
-  exitAccount(){
+  exitAccount(): void {
     localStorage.removeItem('token');
     location.reload();
   }

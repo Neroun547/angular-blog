@@ -10,22 +10,22 @@ import { LoginService } from '../service/login.service';
 export class LoginComponent  {
   constructor(private service: LoginService) {}
   token;
-  error ;
+  error: string;
   loginForm = new FormGroup({
-    "email":new FormControl('', [Validators.required, Validators.email]),
-    "password":new FormControl('', [Validators.required])
-  })
+    'email': new FormControl('', [Validators.required, Validators.email]),
+    'password': new FormControl('', [Validators.required])
+  });
 
-  submit(){
+  submit(): void {
     this.error = '';
-    if(this.loginForm.status === 'VALID'){
+    if (this.loginForm.status === 'VALID') {
       this.service.checkLogin({ 
-        email:this.loginForm.value.email,
-        password:this.loginForm.value.password 
+        email: this.loginForm.value.email,
+        password: this.loginForm.value.password 
       }).subscribe(data => {
-        this.token = data
+        this.token = data;
         console.log(data);
-        localStorage.setItem('token', JSON.stringify({token:this.token.token}));
+        localStorage.setItem('token', JSON.stringify({token: this.token.token}));
         this.loginForm.reset('');
         window.location.replace('/');
       }, 

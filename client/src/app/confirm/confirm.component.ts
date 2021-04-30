@@ -6,13 +6,15 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./confirm.component.scss']
 })
 export class ConfirmComponent implements OnInit {
-  paramUrl:string;
-  loading:boolean;
-  constructor(private activatedRoute: ActivatedRoute) { }
+  paramUrl: string;
+  loading: boolean;
+  constructor(
+    private activatedRoute: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
     this.loading = true;
-    this.activatedRoute.params.subscribe(params => { this.paramUrl = params['item'], this.loading = false });
+    this.activatedRoute.params
+    .subscribe(params => ( this.paramUrl = params.item, this.loading = false ));
   }
-
 }

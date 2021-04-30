@@ -10,18 +10,18 @@ export class ArticleListComponent implements OnInit {
   articleList;
   error;
   articleUrl;
-  loadingNextArticles:boolean = false;
+  loadingNextArticles = false;
   formSearchTheme = {
     titleSearchTheme: ''
-  }
-  countArticle:number;
+  };
+  countArticle: number;
 
   constructor(private articleService: ArticleService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
   this.activatedRoute.params.subscribe(params => {
-    this.articleUrl = Number(params['number']);
-    this.articleService.getArticelList(params['number'])
+    this.articleUrl = Number(params.number);
+    this.articleService.getArticelList(params.number)
       .subscribe(data => {
         this.error = null;
         this.articleList = data.listArticle;
@@ -30,14 +30,14 @@ export class ArticleListComponent implements OnInit {
       }, err => {
         this.error = err.error.message;
         this.loadingNextArticles = false;
-      })
+      });
     }, err => {
-      this.error = "Ошибка";
+      this.error = 'Ошибка';
       this.loadingNextArticles = false;
     });
   }
 
-  submitSearch(form){
+  submitSearch(form): void {
     this.loadingNextArticles = true;
     this.articleService.searchArticlesTheme(form.value.titleSearchTheme.trim()).subscribe(data => {
       this.articleList = data;
@@ -49,7 +49,7 @@ export class ArticleListComponent implements OnInit {
     });
   }
 
-  loader(){
+  loader(): void {
     this.loadingNextArticles = true;
   }
 

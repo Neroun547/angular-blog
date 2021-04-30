@@ -11,10 +11,11 @@ export class ArticleComponent implements OnInit {
   content;
   constructor(private route: ActivatedRoute, private articleService: ArticleService){
   }
-  ngOnInit():void{
-    this.id = this.route.snapshot.params['id'];
-    this.articleService.getContent({id:this.id}).subscribe(data => {
+  ngOnInit(): void {
+    this.id = this.route.snapshot.params.id;
+    this.articleService.getContent({id: this.id})
+    .subscribe(data => {
       this.content = data;
-    })
+    });
   }
 }

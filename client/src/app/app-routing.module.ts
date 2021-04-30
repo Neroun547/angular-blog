@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-//Component
+// Component
 import { MainComponent } from './main/main.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { LoginComponent } from './login/login.component';
@@ -16,19 +16,19 @@ import { ConfirmSuccessComponent } from './confirm-success-email/confirm-success
 import { ConfirmSuccessPasswordComponent } from './confirm-success-password/confirm-success-password.component';  
 
 const routes: Routes = [
-  {path: "", component:MainComponent},
-  {path: "login", component: LoginComponent},
-  {path:"register", component: RegisterComponent},
-  {path:"add-article", component:AddArticleComponent},
-  {path: 'article/:number/item/:id', component:ArticleComponent},
-  {path:'account-settings', component: AccountSettingsComponent},
-  {path:'account-settings/checkpassword/:change', component:ChangeCheckComponent},
-  {path:"account-settings/change/:change", component: ChangeItemComponent},
-  {path:"article/:number", component:ArticleListComponent},
-  {path:"confirm/:item", component:ConfirmComponent},
-  {path:"new-email/:hash", component:ConfirmSuccessComponent},
-  {path:"new-password/:hash", component:ConfirmSuccessPasswordComponent},
-  {path: "**", component: NotfoundComponent}
+  {path: '', component: MainComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
+  {path: 'add-article', component: AddArticleComponent},
+  {path: 'article/:number/item/:id', component: ArticleComponent},
+  {path: 'account-settings', component: AccountSettingsComponent},
+  {path: 'account-settings/checkpassword/:change', component: ChangeCheckComponent},
+  {path: 'account-settings/change/:change', component: ChangeItemComponent},
+  {path: 'article/:number', component: ArticleListComponent},
+  {path: 'confirm/:item', component: ConfirmComponent},
+  {path: 'new-email/:hash', component: ConfirmSuccessComponent},
+  {path: 'new-password/:hash', component: ConfirmSuccessPasswordComponent},
+  {path: '**', component: NotfoundComponent}
 ];
 
 @NgModule({

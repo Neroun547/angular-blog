@@ -11,7 +11,7 @@ import { DomSanitizer } from '@angular/platform-browser';
               .get(url, { responseType: 'blob' })
               .pipe(
                 map(x => {
-                  const urlToBlob = window.URL.createObjectURL(x) // get a URL for the blob
+                  const urlToBlob = window.URL.createObjectURL(x); // get a URL for the blob
                   return this.sanitizer.bypassSecurityTrustResourceUrl(urlToBlob); // tell Anuglar to trust this value
                 }),
               );
