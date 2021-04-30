@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';  
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AccountSettingsService } from '../service/account-settings.service';
 @Component({
   selector: 'app-change-item',
@@ -16,10 +16,15 @@ export class ChangeItemComponent implements OnInit {
   changeUserNameForm = new FormGroup({
     'newparam':new FormControl('', [Validators.required])
   })
-  constructor(private acountSettingsService:AccountSettingsService, private activatedRoute: ActivatedRoute) { }
+  constructor(private acountSettingsService:AccountSettingsService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router 
+  ) { }
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
-      if(params['change'] === 'username' || params['change'] === 'name' || params['change'] === 'phone'){
+      if(params['change'] === 'username' || params['change'] === 'name'
+       || params['change'] === 'phone' || params['change'] === 'email'
+       || params['change'] === 'password'){
         this.paramUrl = params['change']
       } else {
         this.error = 'Ошибка';
@@ -34,7 +39,29 @@ export class ChangeItemComponent implements OnInit {
 
   submitForm(){
     this.error = '';
-        this.acountSettingsService.changeParam({newparam:this.changeUserNameForm.value.newparam,
+    if(this.paramUrl === 'email'){
+      this.acountSettingsService.changeParam({newparam:this.changeUserNameForm.value.newparam,
+        change:this.paramUrl}).subscribe((data) => {
+          this.message = data['message'];
+          this.changeUserNameForm.reset('');
+          this.router.navigate(['confirm/email'])
+        }, err => {
+        this.error = err.error.message;
+        this.changeUserNameForm.reset('');
+     })      
+    }
+    if(this.paramUrl === 'password'){
+      this.acountSettingsService.changeParam({newparam:this.changeUserNameForm.value.newparam,
+        change:this.paramUrl}).subscribe((data) => {
+          this.message = data['message'];
+          this.changeUserNameForm.reset('');
+          this.router.navigate(['confirm/password'])
+        }, err => {
+        this.error = err.error.message;
+        this.changeUserNameForm.reset('');
+     })      
+    } else {
+      this.acountSettingsService.changeParam({newparam:this.changeUserNameForm.value.newparam,
            change:this.paramUrl}).subscribe((data) => {
           this.message = data['message'];
           this.changeUserNameForm.reset('');
@@ -42,5 +69,6 @@ export class ChangeItemComponent implements OnInit {
         this.error = err.error.message;
         this.changeUserNameForm.reset('');
       })
+      }
     }
 }

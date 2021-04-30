@@ -1,4 +1,21 @@
-p{
+.wrapper-not-found{
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+    font-size: 45px;
+}
+
+.smile{
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    font-size: 45px;
+}
+
+.smile p {
     text-align: center;
-    font-size: 22px;
+}
+
+.left-eye{
+    margin-right: 200px;
 }

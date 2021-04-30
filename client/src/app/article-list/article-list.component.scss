@@ -73,7 +73,6 @@
     width: 100%;
     margin: 50px auto;
     display: flex;
-    justify-content: space-between;
     font-size: 22px;
     a{
         color: #000;
@@ -83,4 +82,20 @@
         border-radius: 15px;
         padding: 10px;
     }
+}
+
+.prev-list{
+    display: flex;
+    justify-self: start;
+    margin-right: auto;
+}
+
+.next-list{
+    display: flex;
+    margin-left: auto;
+}
+
+.link-article{
+    text-decoration: none;
+    color: #000;
 }

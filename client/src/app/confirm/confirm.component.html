@@ -1,0 +1,5 @@
+<p class="message-confirm" *ngIf="paramUrl === 'email'">На указаною вами почту отправлено письмо с подтверждением</p>
+<p class="message-confirm" *ngIf="paramUrl === 'password'">На вашу почу прийдет письмо с подтверждением нового пароля</p>
+<div *ngIf="loading">
+    <app-loader></app-loader>
+</div>

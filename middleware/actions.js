@@ -18,6 +18,8 @@ const activeChange = require('../actions/user-settings-worker/active-change');
 const changeParam = require('../actions/user-settings-worker/change-param');
 const userInfo = require('../actions/user-settings-worker/user-info');
 const addAvatar = require('../actions/user-settings-worker/add-avatar');
+const confirmEmail = require('../actions/user-settings-worker/confirm-email');
+const confirmPassword = require('../actions/user-settings-worker/confirm-password');
 //Get avatar
 const getAvatar = require('../actions/get-avatar/get-avatar');
 
@@ -39,6 +41,8 @@ app.use(activeChange);
 app.use(changeParam);
 app.use(userInfo);
 app.use(addAvatar);
+app.use(confirmEmail);
+app.use(confirmPassword);
 // /*---------------------------*/
 app.use(getAvatar);
 

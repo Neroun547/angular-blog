@@ -2,6 +2,9 @@ const express = require('express');
 const app = express();
 const user = require('../../user');
 const connection = require('../../db-connect/connect');
+const { sendMessage } = require('../../services/sendEmail.service');
+const { hash } = require('../../services/hash.service');
+const bcrypt = require('bcrypt');
 
 app.post('/changeParam', (req, res) => {
     connection(function(err, client) {
@@ -64,7 +67,46 @@ app.post('/changeParam', (req, res) => {
                     }
                 })
             }
-        } else {
+        } else if(req.body.change === 'email'){
+            user.newEmail = req.body.newparam.trim();
+            new Promise((resolve, reject) => {
+                collectionUsers.findOne({ email:req.body.newparam.trim() }, (err, result) => {
+                    if(err){
+                        reject();
+                    }
+                    if(result){
+                        reject();
+                    } else {
+                        resolve();
+                    }
+                })
+            })
+            .then(() => {
+                sendMessage(req.body.newparam.trim(), 'Подтверждение почты', 'new-email', 'Подтвердить почту')
+                .then(() => {
+                    collectionUsers.updateOne({email:user.email}, { $set: {confirmEmailHash:hash  } }, { upsert:false });
+                    res.send({ message:"На указаною вами почту прийдет письмо с подтверждением" });
+                })
+                .catch(() => {
+                    res.status(500).send({ message:"Ошибка отправки письма" })
+                });
+            })
+            .catch(() => {
+                res.status(500).send({ message:"Пользователь с такой почтой уже существует" })
+            })
+        } else if (req.body.change === 'password') {
+            user.newPassword = req.body.newparam.trim();
+            sendMessage(user.email, 'Подтверждение пароля', 'new-password', 'Подтвердить пароль')
+            .then(() => {
+                collectionUsers.updateOne({email:user.email}, { $set: { newPassword:hash  }});
+                res.send({message:"На указаною вами почту прийдет письмо с подтверждением"})
+            })
+            .catch((e) => {
+                console.log(e);
+                res.status(500).send({message:"Ошибка"})
+            })
+        }
+        else {
             res.status(500).send({message:"Ошибка"})
         }
     }

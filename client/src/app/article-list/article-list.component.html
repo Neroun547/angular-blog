@@ -6,17 +6,21 @@
         <button type="submit" [disabled]="formSearch.invalid">Поиск</button>
     </form>
     <div class="wrapper-article" *ngFor="let item of articleList">
-       <div class="article-title">Title:{{item.title}}</div>
-        <div class="article-theme">Theme:{{item.theme}}</div> 
-        <div class="article-avtor">Avtor:{{item.avtor}}</div>
-        <div class="article-date">Date:{{item.date | date:'medium'}}
-            <a class="article-link" [routerLink]="['item', item._id]">Читать</a>
-        </div>
+        <a class="link-article" [routerLink]="['item', item._id]">
+            <div class="article-title">Название:{{item.title}}</div>
+            <div class="article-theme">Тема:{{item.theme}}</div> 
+            <div class="article-avtor">Автор:{{item.avtor}}</div>
+            <div class="article-date">Дата добавления:{{item.date | date:'medium'}}</div>
+        </a>
     </div>
 </div>
 <div class="links-list" *ngIf="!error && !loadingNextArticles && articleList">
-    <a *ngIf="articleUrl > 1" (click)="loader()" [routerLink]="['/article', '1']">Предыдущая страница</a>
-    <a *ngIf="countArticle > 5" (click)="loader()" [routerLink]='["/article", "2"]'>Следующая страница</a>
+    <a *ngIf="articleUrl > 1" (click)="loader()" [routerLink]="['/article', '1']" class="prev-list">
+        Предыдущая страница
+    </a>
+    <a *ngIf="countArticle > 5" (click)="loader()" [routerLink]='["/article", "2"]' class="next-list">
+        Следующая страница
+    </a>
 </div>
 <div *ngIf="!articleList && !error || loadingNextArticles">
     <app-loader></app-loader>

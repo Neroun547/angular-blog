@@ -12,7 +12,7 @@ app.post('/register', (req, res) => {
         const db = client.db('blog_angular');
         const collectionUsers = db.collection('users');
 
-        new Promise(async(resolve, reject) => {
+        new Promise((resolve, reject) => {
             collectionUsers.find( { $or: [ { username: req.body.username },
                 { email:req.body.email }, {phone:req.body.phone}] }).toArray((err, result) => {
                     console.log(result);

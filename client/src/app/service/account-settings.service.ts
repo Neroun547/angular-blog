@@ -20,4 +20,7 @@ import { HttpClient } from "@angular/common/http";
         changeAvatar(formData){
             return this.http.post<any>('http://localhost:9000/addAvatar', formData)
         }
+        confirmSuccess(url:string, hashData){
+            return this.http.post(url, hashData);
+        }
     }

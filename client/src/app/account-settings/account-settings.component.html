@@ -23,9 +23,15 @@
             Ваш номер телефона: {{user.phone}}
             <a [routerLink]='["checkpassword", "phone"]'><button>Изменить</button></a>
         </div>
+        <div class="change-password">
+          <a [routerLink]='["checkpassword", "password"]'><button>Изменить пароль</button></a>
+      </div>
+      <div class="change-password">
+        <a [routerLink]='["checkpassword", "email"]'><button>Изменить адрес электронной почты</button></a>
+    </div>
     </div>
 </div>
-<div *ngIf="!user && !error || loading">
+<div *ngIf="!user && !error || loading && !error">
     <app-loader></app-loader>
 </div>
 <div *ngIf="error" >

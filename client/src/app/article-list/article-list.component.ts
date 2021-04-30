@@ -23,7 +23,6 @@ export class ArticleListComponent implements OnInit {
     this.articleUrl = Number(params['number']);
     this.articleService.getArticelList(params['number'])
       .subscribe(data => {
-        console.log(data);
         this.error = null;
         this.articleList = data.listArticle;
         this.countArticle = Number(data.countArticle) / this.articleUrl;

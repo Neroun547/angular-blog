@@ -17,6 +17,8 @@ import { ArticleComponent } from './article/article.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { ChangeCheckComponent } from './change-check/change-check.component';
 import { ChangeItemComponent } from './change-item/change-item.component'; 
+import { ConfirmSuccessComponent } from './confirm-success-email/confirm-success-email.component';
+import { ConfirmSuccessPasswordComponent } from './confirm-success-password/confirm-success-password.component';
 //Service
 import { LoginService } from './service/login.service';
 import { RegisterService } from './service/register.service';
@@ -26,6 +28,8 @@ import { AccountSettingsService } from './service/account-settings.service';
 import { AppService } from './service/app.service'; 
 //Sait effect
 import { LoaderComponent } from './loader/loader.component';
+import { ConfirmComponent } from './confirm/confirm.component';
+import { StoreModule } from '@ngrx/store';
 
 
 @NgModule({
@@ -41,7 +45,10 @@ import { LoaderComponent } from './loader/loader.component';
     AccountSettingsComponent,
     ChangeCheckComponent,
     ChangeItemComponent,
-    LoaderComponent
+    LoaderComponent,
+    ConfirmComponent,
+    ConfirmSuccessComponent,
+    ConfirmSuccessPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +56,7 @@ import { LoaderComponent } from './loader/loader.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    StoreModule.forRoot({}, {}),
 
   ],
   providers: [LoginService, RegisterService, CheckTokenService, 
